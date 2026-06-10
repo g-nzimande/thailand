@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    color: #2C2C2C;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    line-height: 1.6;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, #E8531A 0%, #D4490F 40%, #B83A0A 100%);
+    color: #FFFBF0;
+    padding: 50px 40px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .cover h1 {
+    font-size: 2.6em;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    letter-spacing: 2px;
+    font-family: 'Georgia', serif;
+  }
+  .cover .subtitle {
+    font-size: 1.1em;
+    color: #FFD580;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .cover .dates {
+    font-size: 1.0em;
+    color: #FFFBF0;
+    margin-bottom: 6px;
+  }
+  .cover .travellers {
+    font-size: 0.95em;
+    color: #FFD580;
+    font-style: italic;
+  }
+  .cover hr {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    margin: 20px auto;
+    width: 60%;
+  }
+
+  /* ── SECTION HEADERS ── */
+  h2 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #FFFBF0;
+    background-color: #E8531A;
+    padding: 10px 16px;
+    margin: 28px 0 14px 0;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    font-family: 'Georgia', serif;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #B83A0A;
+    margin: 18px 0 8px 0;
+    border-bottom: 2px solid #FFD580;
+    padding-bottom: 4px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: #FFF8EE;
+    border-left: 4px solid #E8531A;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .card-gold {
+    background: #FFFBF0;
+    border-left: 4px solid #F0A500;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .card-teal {
+    background: #F0FAF8;
+    border-left: 4px solid #2A9D8F;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── FLIGHT TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 0.95em;
+  }
+  th {
+    background-color: #E8531A;
+    color: #FFFBF0;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+  tr:nth-child(even) td {
+    background-color: #FFF8EE;
+  }
+  tr:nth-child(odd) td {
+    background-color: #FFFBF0;
+  }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #F0D9B0;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .checklist li {
+    padding: 5px 0 5px 28px;
+    position: relative;
+    border-bottom: 1px dotted #F0D9B0;
+    font-size: 0.95em;
+  }
+  .checklist li:before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: #E8531A;
+    font-size: 1.1em;
+  }
+
+  /* ── TWO-COL GRID ── */
+  .grid2 {
+    display: table;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .grid2-left, .grid2-right {
+    display: table-cell;
+    width: 50%;
+    padding-right: 12px;
+    vertical-align: top;
+  }
+  .grid2-right { padding-right: 0; padding-left: 12px; }
+
+  /* ── HIGHLIGHT PILL ── */
+  .pill {
+    display: inline-block;
+    background: #FFD580;
+    color: #7A4800;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.82em;
+    font-weight: bold;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .pill-teal {
+    display: inline-block;
+    background: #C8F0EB;
+    color: #1A6B63;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.82em;
+    font-weight: bold;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── PHRASE TABLE ── */
+  .phrases td {
+    padding: 7px 12px;
+  }
+  .phrases td:first-child {
+    font-weight: bold;
+    color: #B83A0A;
+    width: 35%;
+  }
+
+  /* ── MONEY BOX ── */
+  .money-box {
+    background: #FFF3CC;
+    border: 1px solid #F0C040;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+  .money-box .big {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #7A4800;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #2C2C2C;
+    color: #FFD580;
+    text-align: center;
+    padding: 18px;
+    border-radius: 4px;
+    margin-top: 32px;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+  }
+
+  p { margin: 6px 0 10px 0; }
+  ul { margin: 4px 0 10px 0; padding-left: 20px; }
+  ul li { margin-bottom: 4px; font-size: 0.95em; }
+  strong { color: #B83A0A; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>🌴 PHUKET, THAILAND</h1>
+  <div class="subtitle">Holiday Itinerary</div>
+  <hr>
+  <div class="dates">22 June – 3 July 2026 &nbsp;·&nbsp; 10 Nights / 11 Days</div>
+  <div class="travellers">Mr Gorata Nzimande &amp; Ms Kwena Mabotja</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>✈️ DEPARTURE DAY — 22 JUNE 2026</h2>
+
+<h3>OR Tambo International Airport (JNB)</h3>
+<div class="card">
+  <p><strong>Route:</strong> Johannesburg (JNB) → Doha (DOH) → Phuket (HKT)</p>
+  <p><strong>Airline:</strong> Qatar Airways (Doha connection on 23 June)</p>
+</div>
+
+<table>
+  <tr>
+    <th>Milestone</th>
+    <th>Recommended Time</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>Arrive at OR Tambo</td>
+    <td><strong>3 hours before departure</strong></td>
+    <td>Qatar Airways international check-in standard</td>
+  </tr>
+  <tr>
+    <td>Check-in counter closes</td>
+    <td>60 min before departure</td>
+    <td>Do not leave this until the last minute</td>
+  </tr>
+  <tr>
+    <td>Online check-in opens</td>
+    <td>48 hours before flight</td>
+    <td>Do via Qatar Airways app — select seats early</td>
+  </tr>
+  <tr>
+    <td>Proceed through security</td>
+    <td>After check-in</td>
+    <td>Allow extra time — Terminal A can be busy</td>
+  </tr>
+  <tr>
+    <td>Bidvest Premier Lounge</td>
+    <td>Up to 4 hours before departure</td>
+    <td>Access via Kwena's Absa card (see below)</td>
+  </tr>
+</table>
+
+<h3>🛋️ Bidvest Premier Lounge — International Terminal A</h3>
+<div class="card-gold">
+  <p><strong>Location:</strong> International Terminal A, Mezzanine Level — airside, after security. Turn right through the Duty Free area; take the escalator just before the Out of Africa shop up to the Mezzanine Level. The lounge is in the right-hand corner.</p>
+  <p><strong>Access:</strong> Via Kwena's Absa Premier/Private Banking card <span class="pill">Bidvest access</span></p>
+  <p><strong>Lounge opens:</strong> 24 hours daily</p>
+  <p><strong>Max entry window:</strong> Up to 4 hours before scheduled departure</p>
+  <p><strong>Amenities:</strong> Open food &amp; beverage buffet · Alcoholic drinks · Wi-Fi · Showers · Comfortable seating</p>
+  <p style="color:#888; font-size:0.88em;"><em>Note: The lounge may be undergoing refurbishment — it remains open but minor disruption is possible.</em></p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>✈️ FLIGHTS SUMMARY</h2>
+
+<table>
+  <tr>
+    <th>Leg</th>
+    <th>Date</th>
+    <th>Route</th>
+    <th>Airline</th>
+  </tr>
+  <tr>
+    <td>Outbound 1</td>
+    <td>22 June 2026</td>
+    <td>JNB → DOH</td>
+    <td>Qatar Airways</td>
+  </tr>
+  <tr>
+    <td>Outbound 2</td>
+    <td>23 June 2026</td>
+    <td>DOH → HKT</td>
+    <td>Qatar Airways</td>
+  </tr>
+  <tr>
+    <td>Return 1</td>
+    <td>2 July 2026</td>
+    <td>HKT → DOH</td>
+    <td>Qatar Airways</td>
+  </tr>
+  <tr>
+    <td>Return 2</td>
+    <td>3 July 2026</td>
+    <td>DOH → JNB</td>
+    <td>Qatar Airways</td>
+  </tr>
+</table>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🏨 ACCOMMODATION</h2>
+
+<div class="card">
+  <p><strong>Hotel:</strong> SIS Kata Resort Phuket</p>
+  <p><strong>Address:</strong> 255 Kok Tanode Road, Karon District, Phuket, Thailand</p>
+  <p><strong>Room:</strong> SIS on the Hill — Sea View</p>
+  <p><strong>Meal Plan:</strong> Bed &amp; Breakfast (breakfast included daily)</p>
+  <p><strong>Check-in:</strong> 23 June 2026 &nbsp;·&nbsp; <strong>Check-out:</strong> 2 July 2026 &nbsp;·&nbsp; <strong>Duration:</strong> 10 Nights</p>
+  <p><strong>Deposit:</strong> Expect a refundable security deposit of approximately R500–R800 equivalent — pay in THB cash where possible.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>📦 WHAT'S INCLUDED</h2>
+
+<div class="grid2">
+  <div class="grid2-left">
+    <div class="card-teal">
+      <strong>Included in Package</strong>
+      <ul>
+        <li>Return international flights</li>
+        <li>Airport taxes</li>
+        <li>Return airport transfers (Phuket)</li>
+        <li>10 nights at SIS Kata Resort</li>
+        <li>Daily breakfast</li>
+        <li>Phuket City Tour Experience</li>
+        <li>Phuket Fantasea Experience</li>
+        <li>✅ Package paid in full</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid2-right">
+    <div class="card">
+      <strong>Still to Budget For</strong>
+      <ul>
+        <li>Travel insurance</li>
+        <li>Phi Phi Island Tour (~R1,490 pp)</li>
+        <li>Daily lunches &amp; dinners</li>
+        <li>Hotel security deposit</li>
+        <li>Shopping &amp; souvenirs</li>
+        <li>Spending money (see below)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>💰 MONEY &amp; BUDGET</h2>
+
+<div class="money-box">
+  <p><strong>Recommended cash withdrawal on arrival:</strong></p>
+  <p class="big">10,000 THB minimum</p>
+  <p>Or budget: <strong>1,500 THB × 10 days = 15,000 THB</strong></p>
+  <p style="font-size:0.9em; color:#888;">Exchange guide: <strong>1 ZAR ≈ 1.99 THB</strong> — verify before departure</p>
+</div>
+
+<div class="card-gold">
+  <strong>ATM Tips on Arrival</strong>
+  <ul>
+    <li>Withdraw from a <strong>7-Eleven area ATM</strong></li>
+    <li>Prefer <strong>Yellow ATM machines</strong> — lower fees</li>
+    <li>Buy bottled water immediately after landing</li>
+    <li>Purchase disposable ponchos / rain gear</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🗺️ PLACES TO EXPLORE</h2>
+
+<h3>Beaches</h3>
+<div class="grid2">
+  <div class="grid2-left">
+    <div class="card-teal">
+      <strong>Kata Beach</strong> <span class="pill-teal">Walking distance</span>
+      <p>Great swimming and beach atmosphere. Right on your doorstep from the hotel.</p>
+    </div>
+  </div>
+  <div class="grid2-right">
+    <div class="card-teal">
+      <strong>Freedom Beach</strong>
+      <p>Less crowded, scenic and relaxed. Excellent for photos and swimming.</p>
+    </div>
+  </div>
+</div>
+
+<h3>Must-Visit Areas</h3>
+<div class="card">
+  <strong>Bangla Road</strong> — Phuket's famous nightlife district. Best experienced in the evening. Vibrant and lively.
+</div>
+<div class="card">
+  <strong>Phuket Old Town</strong> — Colourful Sino-Portuguese architecture, cafes, markets and great shopping. Wonderful for a leisurely walk.
+</div>
+<div class="card">
+  <strong>Night Markets</strong> — Local food, souvenirs, street entertainment and shopping. Great budget-friendly evenings.
+</div>
+<div class="card">
+  <strong>Karon Viewpoint</strong> — Stunning panoramic views. Ideal for sunset.
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🚤 EXPERIENCES TO BOOK</h2>
+
+<div class="card-gold">
+  <strong>Phi Phi Island Tour</strong> <span class="pill">Book before departure</span>
+  <p>One of Thailand's most iconic experiences. Recommended provider: <strong>WOLO</strong></p>
+  <p>Approximate cost: <strong>R1,490 per person</strong></p>
+  <p>Book in advance to secure your spot — availability can be limited.</p>
+</div>
+<div class="card-gold">
+  <strong>Phuket Fantasea Experience</strong>
+  <p>Included in your package. A spectacular Thai cultural show — confirm timing and logistics at hotel check-in.</p>
+</div>
+<div class="card-gold">
+  <strong>Phuket City Tour</strong>
+  <p>Also included in your package. A guided tour of the island's highlights.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🍽️ FOOD &amp; DINING</h2>
+
+<h3>Meal Plan</h3>
+<p>Breakfast is included daily at the hotel. Lunches and dinners are on your own, except when covered during excursions.</p>
+
+<h3>Recommendations</h3>
+<div class="card-teal">
+  <strong>Happy Seafood</strong>
+  <p>Recommended local seafood spot. Fresh catches at reasonable prices — a must-do.</p>
+</div>
+<div class="card-teal">
+  <strong>Issara Kata Beach</strong> <span class="pill-teal">Special Occasion</span>
+  <p>Upscale beachfront dining overlooking Kata Beach. Stunning sunset views, elevated Thai and international cuisine, great cocktail selection. Arrive 30–45 minutes before sunset. Perfect for a romantic dinner — consider a reservation during peak periods.</p>
+</div>
+
+<h3>Local Tips</h3>
+<ul>
+  <li>Beef dishes are generally excellent.</li>
+  <li>Chicken dishes are often less impressive than South African standards.</li>
+  <li>Restaurants directly on the beachfront charge a premium — venues one or two streets back are better value.</li>
+  <li><strong>7-Eleven</strong> is your best friend: great coffee, affordable snacks, toiletries, basic OTC medication and cheap water.</li>
+</ul>
+
+<h3>Alcohol Sales</h3>
+<div class="card">
+  <p>Alcohol is generally sold between <strong>5:00 PM and Midnight</strong> (subject to local regulations and store policy).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>☀️ WEATHER &amp; PRACTICAL TIPS</h2>
+
+<div class="grid2">
+  <div class="grid2-left">
+    <div class="card">
+      <strong>Weather in June</strong>
+      <ul>
+        <li>Expect rain showers — pack a lightweight poncho</li>
+        <li>Pack quick-dry clothing</li>
+        <li>Hottest period: 12:00 PM – 2:00 PM</li>
+        <li>Stay hydrated; buy water regularly</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid2-right">
+    <div class="card">
+      <strong>Apps to Download</strong>
+      <ul>
+        <li><strong>Grab</strong> — preferred ride-hailing</li>
+        <li><strong>Bolt</strong> — ride-hailing alternative</li>
+        <li><strong>Google Maps</strong></li>
+        <li><strong>Google Translate</strong></li>
+        <li><strong>WhatsApp</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🗣️ BASIC THAI PHRASES</h2>
+
+<table class="phrases">
+  <tr>
+    <th>Phrase</th>
+    <th>Thai (Male)</th>
+    <th>Thai (Female)</th>
+  </tr>
+  <tr>
+    <td>Hello</td>
+    <td>Sawasdee Krub</td>
+    <td>Sawasdee Ka</td>
+  </tr>
+  <tr>
+    <td>Thank You</td>
+    <td>Khob Khun Krub</td>
+    <td>Khob Khun Ka</td>
+  </tr>
+  <tr>
+    <td>Yes</td>
+    <td colspan="2">Chai</td>
+  </tr>
+  <tr>
+    <td>No</td>
+    <td colspan="2">Mai</td>
+  </tr>
+  <tr>
+    <td>How Much?</td>
+    <td colspan="2">Tao Rai?</td>
+  </tr>
+</table>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🧳 TRAVEL DOCUMENTS</h2>
+
+<div class="card">
+  <ul>
+    <li>Passport valid for at least <strong>6 months</strong> after 3 July 2026 (i.e. valid past 3 January 2027)</li>
+    <li>At least <strong>3 blank pages</strong> available in passport</li>
+    <li>Complete the <strong>Thailand Digital Arrival Card (TDAC)</strong> before arrival</li>
+    <li>Verify current visa/immigration requirements before departure</li>
+    <li>Store digital copies of all travel documents</li>
+    <li>Save emergency contacts in advance</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🛡️ TRAVEL INSURANCE</h2>
+
+<div class="card-gold">
+  <p>Travel insurance is strongly recommended for the full duration of the trip. <strong>Bryte Travel Insurance</strong> is available to South African passport and ID holders. Request a quote before departure if not yet arranged.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>✅ PRE-DEPARTURE CHECKLIST</h2>
+
+<ul class="checklist">
+  <li>Passport valid for 6+ months after return date</li>
+  <li>At least 3 blank passport pages confirmed</li>
+  <li>Online check-in completed (opens 48 hrs before flight)</li>
+  <li>Seats selected via Qatar Airways app</li>
+  <li>Travel insurance arranged</li>
+  <li>Thailand Digital Arrival Card (TDAC) completed</li>
+  <li>International roaming or eSIM arranged</li>
+  <li>Grab &amp; Bolt downloaded</li>
+  <li>Google Maps &amp; Translate downloaded</li>
+  <li>Cash withdrawal plan confirmed (10,000–15,000 THB)</li>
+  <li>Poncho / rain gear packed</li>
+  <li>Phi Phi Island experience booked (WOLO — R1,490 pp)</li>
+  <li>Hotel deposit cash (R500–R800 equiv. in THB) prepared</li>
+  <li>Copies of passports and documents stored digitally</li>
+  <li>Emergency contacts saved</li>
+  <li>Absa card confirmed active for Bidvest lounge access at JNB</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>🗓️ MUST-DO LIST IN PHUKET</h2>
+
+<ul class="checklist">
+  <li>Visit Kata Beach (walking distance from hotel)</li>
+  <li>Explore Freedom Beach</li>
+  <li>Phuket City Tour (included)</li>
+  <li>Phuket Fantasea Experience (included)</li>
+  <li>Phi Phi Island day trip</li>
+  <li>Walk Bangla Road at night</li>
+  <li>Explore Phuket Old Town</li>
+  <li>Visit a Night Market</li>
+  <li>Sunset dinner at Issara Kata Beach</li>
+  <li>Try local seafood at Happy Seafood</li>
+  <li>Watch sunset from Karon Viewpoint</li>
+  <li>Have a 7-Eleven coffee at least once</li>
+</ul>
+
+<!-- FOOTER -->
+<div class="footer">
+  🌺 Wishing you an incredible trip — enjoy every moment of Phuket! 🌺
+</div>
+
+</body>
+</html>
